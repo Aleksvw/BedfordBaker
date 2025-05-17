@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanderpool-Wallace | Travel, Tourism & Hospitality Advisors</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Smooth transitions */
+        .page {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .page.active {
+            display: block;
+            opacity: 1;
+        }
+        
+        /* Hero section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                        url('https://images.unsplash.com/photo-1506929562872-bb421503ef21?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            min-height: 60vh;
+        }
+        
+        /* Navigation */
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #2563eb;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+        /* Project cards */
+        .project-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Client logos */
+        .client-logo {
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+        .client-logo:hover {
+            filter: grayscale(0);
+            opacity: 1;
+        }
+        
+        /* Case study cards */
+        .case-study-card {
+            border-left: 4px solid #2563eb;
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800">
+    <!-- Header/Navigation -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl mr-3">VW</div>
+                <h1 class="text-xl font-bold">VANDERPOOL-WALLACE</h1>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#" class="nav-link active" data-page="home">Home</a>
+                <a href="#" class="nav-link" data-page="about">About Us</a>
+                <a href="#" class="nav-link" data-page="case-studies">Case Studies</a>
+                <a href="#" class="nav-link" data-page="presentations">Presentations</a>
+                <a href="#" class="nav-link" data-page="clients">Our Clients</a>
+                <a href="#" class="nav-link" data-page="projects">Past Projects</a>
+                <a href="#" class="nav-link" data-page="contact">Contact Us</a>
+            </nav>
+            <button class="md:hidden text-gray-600" id="mobile-menu-button">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div class="md:hidden hidden bg-white shadow-lg" id="mobile-menu">
+            <div class="container mx-auto px-4 py-2 flex flex-col">
+                <a href="#" class="py-2 nav-link active" data-page="home">Home</a>
+                <a href="#" class="py-2 nav-link" data-page="about">About Us</a>
+                <a href="#" class="py-2 nav-link" data-page="case-studies">Case Studies</a>
+                <a href="#" class="py-2 nav-link" data-page="presentations">Presentations</a>
+                <a href="#" class="py-2 nav-link" data-page="clients">Our Clients</a>
+                <a href="#" class="py-2 nav-link" data-page="projects">Past Projects</a>
+                <a href="#" class="py-2 nav-link" data-page="contact">Contact Us</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section (Home Page) -->
+    <section class="page active" id="home">
+        <div class="hero flex items-center justify-center text-white">
+            <div class="text-center px-4">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6">Travel, Tourism & Hospitality Advisors</h1>
+                <p class="text-xl md:text-2xl mb-8">Strategic solutions for destinations, hotels, and tourism businesses</p>
+                <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-md font-medium transition duration-300 inline-block" data-page="contact">Get in Touch</a>
+            </div>
+        </div>
+        
+        <div class="container mx-auto px-4 py-16">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Our Advisory Services</h2>
+                <p class="max-w-2xl mx-auto text-gray-600">We provide comprehensive strategic advisory services for the travel, tourism and hospitality sectors.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-map-marked-alt text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Destination Development</h3>
+                    <p class="text-gray-600">Strategic planning and market positioning for tourism destinations worldwide.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-hotel text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Hospitality Consulting</h3>
+                    <p class="text-gray-600">Operational excellence, concept development and revenue optimization for hotels.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-plane text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Tourism Strategy</h3>
+                    <p class="text-gray-600">Market analysis, product development and visitor experience enhancement.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Page -->
+    <section class="page" id="about">
+        <div class="container mx-auto px-4 py-16">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80" 
+                         alt="Vincent Vanderpool-Wallace" class="rounded-lg shadow-lg w-full">
+                </div>
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl font-bold mb-6">About Vanderpool-Wallace</h2>
+                    <p class="text-gray-600 mb-4">Founded in 2005, Vanderpool-Wallace has established itself as a leading advisory firm in the travel, tourism and hospitality sectors, working with clients across six continents.</p>
+                    <p class="text-gray-600 mb-6">Our principal, Vincent Vanderpool-Wallace, brings over 30 years of experience in tourism policy, destination marketing, and hospitality operations to every engagement.</p>
+                    
+                    <div class="grid grid-cols-2 gap-4 mb-8">
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h3 class="font-semibold text-blue-800 mb-1">18+</h3>
+                            <p class="text-sm text-gray-600">Years in Business</p>
+                        </div>
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h3 class="font-semibold text-blue-800 mb-1">200+</h3>
+                            <p class="text-sm text-gray-600">Projects Completed</p>
+                        </div>
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h3 class="font-semibold text-blue-800 mb-1">60+</h3>
+                            <p class="text-sm text-gray-600">Countries Served</p>
+                        </div>
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h3 class="font-semibold text-blue-800 mb-1">15</h3>
+                            <p class="text-sm text-gray-600">Industry Awards</p>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-xl font-semibold mb-4">Our Associates</h3>
+                    <p class="text-gray-600 mb-4">We maintain a network of independent specialist consultants who join our team as needed for specific projects, allowing us to scale our expertise to match each client's requirements.</p>
+                    
+                    <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md font-medium transition duration-300 inline-block" data-page="contact">Contact Our Team</a>
+                </div>
+            </div>
+            
+            <div class="mt-16">
+                <h3 class="text-2xl font-bold mb-6 text-center">Vincent Vanderpool-Wallace</h3>
+                <div class="bg-white p-8 rounded-lg shadow-md max-w-4xl mx-auto">
+                    <div class="flex flex-col md:flex-row items-center">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80" 
+                             alt="Vincent Vanderpool-Wallace" class="w-32 h-32 rounded-full object-cover mb-4 md:mb-0 md:mr-8">
+                        <div>
+                            <p class="text-gray-600 mb-4">With a distinguished career spanning government tourism ministries, destination marketing organizations, and private sector hospitality operations, Vincent brings unparalleled perspective to tourism development challenges.</p>
+                            <p class="text-gray-600 mb-4">Former Minister of Tourism for The Bahamas and Secretary General of the Caribbean Tourism Organization, Vincent has been recognized with numerous industry awards including the Lifetime Achievement Award from the Caribbean Hotel & Tourism Association.</p>
+                            <p class="text-gray-600">His strategic insights have helped shape tourism policies and business strategies in emerging and mature markets worldwide.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies Page -->
+    <section class="page" id="case-studies">
+        <div class="container mx-auto px-4 py-16">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Case Studies</h2>
+                <p class="max-w-2xl mx-auto text-gray-600">Insights from our work with destinations and hospitality businesses worldwide.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="case-study-card bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-4 text-blue-600">Caribbean Destination Recovery</h3>
+                    <p class="text-gray-600 mb-4">After a devastating hurricane season, we worked with three island nations to rebuild their tourism offerings. Our market analysis revealed an opportunity to reposition these destinations as "authentic Caribbean" alternatives to more developed islands.</p>
+                    <p class="text-gray-600">Key insight: Disaster recovery can be a catalyst for strategic repositioning when approached holistically.</p>
+                </div>
+                
+                <div class="case-study-card bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-4 text-blue-600">African Safari Lodge Turnaround</h3>
+                    <p class="text-gray-600 mb-4">A luxury safari lodge was struggling with low occupancy despite excellent reviews. Our assessment identified that their marketing was targeting the wrong demographic - adventure seekers rather than luxury travelers seeking comfort in the wilderness.</p>
+                    <p class="text-gray-600">Key insight: Product quality doesn't guarantee market fit - alignment between product and marketing is essential.</p>
+                </div>
+                
+                <div class="case-study-card bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-4 text-blue-600">Urban Hotel Repositioning</h3>
+                    <p class="text-gray-600 mb-4">A 1980s convention hotel in a major US city was losing market share to newer properties. Rather than competing on amenities, we helped them reposition as the "best connected" hotel for business travelers, leveraging their central location and existing transit links.</p>
+                    <p class="text-gray-600">Key insight: Sometimes operational strengths can become marketing advantages when framed correctly.</p>
+                </div>
+                
+                <div class="case-study-card bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-4 text-blue-600">Asian Cultural Tourism Development</h3>
+                    <p class="text-gray-600 mb-4">Working with a regional government, we identified that their cultural assets were being underutilized by focusing only on international tourists. By developing domestic tourism programs first, they created authentic experiences that later became unique selling points for international visitors.</p>
+                    <p class="text-gray-600">Key insight: Domestic tourism can be the foundation for successful international tourism development.</p>
+                </div>
+                
+                <div class="case-study-card bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-4 text-blue-600">Cruise Port Destination Strategy</h3>
+                    <p class="text-gray-600 mb-4">A Caribbean port was receiving cruise visitors but seeing minimal economic benefit. We developed a "downtown as attraction" strategy that encouraged passengers to explore beyond the port area, increasing visitor spending by 320% within two years.</p>
+                    <p class="text-gray-600">Key insight: Cruise tourism benefits require intentional design of the passenger experience beyond the dock.</p>
+                </div>
+                
+                <div class="case-study-card bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-4 text-blue-600">Boutique Hotel Brand Expansion</h3>
+                    <p class="text-gray-600 mb-4">A successful boutique hotel wanted to expand but risked losing its unique character. We helped them develop a franchise model that maintained design standards while allowing local adaptations, resulting in 12 new properties that each reflected their location while maintaining brand consistency.</p>
+                    <p class="text-gray-600">Key insight: Scalability requires balancing standardization with local relevance.</p>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center">
+                <h3 class="text-2xl font-bold mb-4">Request a Consultation</h3>
+                <p class="max-w-2xl mx-auto text-gray-600 mb-6">Our team can provide customized insights for your specific tourism challenge.</p>
+                <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md font-medium transition duration-300 inline-block" data-page="contact">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Presentations Page -->
+    <section class="page" id="presentations">
+        <div class="container mx-auto px-4 py-16">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Industry Presentations</h2>
+                <p class="max-w-2xl mx-auto text-gray-600">Our principal and associates regularly share insights at tourism conferences worldwide.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <img src="https://images.unsplash.com/photo-1431548519331-d6f0c9b0f8a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                         alt="Conference Presentation" class="w-full h-48 object-cover rounded-t-lg mb-4">
+                    <h3 class="text-xl font-semibold mb-2">The Future of Sustainable Tourism</h3>
+                    <p class="text-gray-600 mb-4">Presented at the 2023 World Travel Market by Vincent Vanderpool-Wallace.</p>
+                    <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">View Slides <i class="fas fa-arrow-right ml-1"></i></a>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <img src="https://images.unsplash.com/photo-1496337589254-7e6d71f4273d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                         alt="Workshop" class="w-full h-48 object-cover rounded-t-lg mb-4">
+                    <h3 class="text-xl font-semibold mb-2">Destination Resilience Strategies</h3>
+                    <p class="text-gray-600 mb-4">Presented at the 2022 Caribbean Tourism Summit.</p>
+                    <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">View Slides <i class="fas fa-arrow-right ml-1"></i></a>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                         alt="Panel Discussion" class="w-full h-48 object-cover rounded-t-lg mb-4">
+                    <h3 class="text-xl font-semibold mb-2">Luxury Travel Trends Post-Pandemic</h3>
+                    <p class="text-gray-600 mb-4">Panel discussion at the 2021 International Luxury Travel Market.</p>
+                    <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">View Video <i class="fas fa-arrow-right ml-1"></i></a>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2012&q=80" 
+                         alt="Technical Workshop" class="w-full h-48 object-cover rounded-t-lg mb-4">
+                    <h3 class="text-xl font-semibold mb-2">Cultural Tourism Development</h3>
+                    <p class="text-gray-600 mb-4">Workshop presented at the 2020 UNESCO World Conference.</p>
+                    <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">View Materials <i class="fas fa-arrow-right ml-1"></i></a>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center">
+                <h3 class="text-2xl font-bold mb-4">Request a Speaker</h3>
+                <p class="max-w-2xl mx-auto text-gray-600 mb-6">Our team is available to speak at your event or provide training for your organization.</p>
+                <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md font-medium transition duration-300 inline-block" data-page="contact">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clients Page -->
+    <section class="page" id="clients">
+        <div class="container mx-auto px-4 py-16">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Our Clients</h2>
+                <p class="max-w-2xl mx-auto text-gray-600">We've had the privilege of working with leading organizations across the travel and hospitality sectors.</p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
+                <div class="flex items-center justify-center p-4">
+                    <img src="https://images.unsplash.com/photo-1587825147308-fd9cb327a5bc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80" 
+                         alt="Client Logo" class="client-logo h-12 object-contain">
+                </div>
+                <div class="flex items-center justify-center p-4">
+                    <img src="https://images.unsplash.com/photo-1587825147308-fd9cb327a5bc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80" 
+                         alt="Client Logo" class="client-logo h-12 object-contain">
+                </div>
+                <div class="flex items-center justify-center p-4">
+                    <img src="https://images.unsplash.com/photo-1587825147308-fd9cb327a5bc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80" 
+                         alt="Client Logo" class="client-logo h-12 object-contain">
+                </div>
+                <div class="flex items-center justify-center p-4">
+                    <img src="https://images.unsplash.com/photo-1587825147308-fd9cb327a5bc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80" 
+                         alt="Client Logo" class="client-logo h-12 object-contain">
+                </div>
+                <div class="flex items-center justify-center p-4">
+                    <img src="https://images.unsplash.com/photo-1587825147308-fd9cb327a5bc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80" 
+                         alt="Client Logo" class="client-logo h-12 object-contain">
+                </div>
+                <div class="flex items-center justify-center p-4">
+                    <img src="https://images.unsplash.com/photo-1587825147308-fd9cb327a5bc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80" 
+                         alt="Client Logo" class="client-logo h-12 object-contain">
+                </div>
+                <div class="flex items-center justify-center p-4">
+                    <img src="https://images.unsplash.com/photo-1587825147308-fd9cb327a5bc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80" 
+                         alt="Client Logo" class="client-logo h-12 object-contain">
+                </div>
+                <div class="flex items-center justify-center p-4">
+                    <img src="https://images.unsplash.com/photo-1587825147308-fd9cb327a5bc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80" 
+                         alt="Client Logo" class="client-logo h-12 object-contain">
+                </div>
+            </div>
+            
+            <div class="bg-blue-50 rounded-lg p-8 md:p-12">
+                <div class="max-w-3xl mx-auto text-center">
+                    <h3 class="text-2xl font-bold mb-4">Client Testimonials</h3>
+                    
+                    <div class="mb-8">
+                        <p class="text-gray-700 italic mb-4">"Vanderpool-Wallace's strategic guidance transformed our approach to destination marketing. Their insights helped us increase visitor spending by 42% while reducing marketing costs."</p>
+                        <p class="font-semibold">- David Wilson, Tourism Director at Caribbean Islands</p>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <p class="text-gray-700 italic mb-4">"Working with Vincent and his team was a game-changer for our hotel group. They identified market opportunities we had completely overlooked and helped us develop a winning strategy."</p>
+                        <p class="font-semibold">- Maria Gonzalez, CEO of Tropical Resorts</p>
+                    </div>
+                    
+                    <div>
+                        <p class="text-gray-700 italic mb-4">"The tourism master plan developed by Vanderpool-Wallace has become our roadmap for sustainable development. Their combination of local knowledge and global perspective is unmatched."</p>
+                        <p class="font-semibold">- Thomas Reed, Minister of Tourism</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Page -->
+    <section class="page" id="projects">
+        <div class="container mx-auto px-4 py-16">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Past Projects</h2>
+                <p class="max-w-2xl mx-auto text-gray-600">Explore some of our notable tourism and hospitality advisory projects.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                <div class="project-card bg-white rounded-lg overflow-hidden shadow-md">
+                    <img src="https://images.unsplash.com/photo-1487958449943-2429e8b8623b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                         alt="Caribbean Tourism Strategy" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Caribbean Tourism Strategy</h3>
+                        <p class="text-gray-600 mb-4">Regional tourism development plan covering 12 island nations</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm font-medium text-blue-600">Completed 2022</span>
+                            <a href="#" class="text-blue-600 hover:text-blue-800">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card bg-white rounded-lg overflow-hidden shadow-md">
+                    <img src="https://images.unsplash.com/photo-1571624436279-b272aff752b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                         alt="Luxury Safari Lodge Development" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Luxury Safari Lodge Development</h3>
+                        <p class="text-gray-600 mb-4">Concept development and operational planning for African eco-resort</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm font-medium text-blue-600">Completed 2021</span>
+                            <a href="#" class="text-blue-600 hover:text-blue-800">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card bg-white rounded-lg overflow-hidden shadow-md">
+                    <img src="https://images.unsplash.com/photo-1581093458179-5c1c4e8a1884?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                         alt="Urban Hotel Repositioning" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Urban Hotel Repositioning</h3>
+                        <p class="text-gray-600 mb-4">Market analysis and brand strategy for historic downtown property</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm font-medium text-blue-600">Completed 2020</span>
+                            <a href="#" class="text-blue-600 hover:text-blue-800">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card bg-white rounded-lg overflow-hidden shadow-md">
+                    <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                         alt="Cultural Tourism Development" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Cultural Tourism Development</h3>
+                        <p class="text-gray-600 mb-4">Product development and visitor experience design for Asian destination</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm font-medium text-blue-600">Completed 2019</span>
+                            <a href="#" class="text-blue-600 hover:text-blue-800">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card bg-white rounded-lg overflow-hidden shadow-md">
+                    <img src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                         alt="Cruise Port Strategy" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Cruise Port Strategy</h3>
+                        <p class="text-gray-600 mb-4">Visitor dispersal and economic impact enhancement program</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm font-medium text-blue-600">Completed 2018</span>
+                            <a href="#" class="text-blue-600 hover:text-blue-800">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card bg-white rounded-lg overflow-hidden shadow-md">
+                    <img src="https://images.unsplash.com/photo-1600566752227-8689d4ddf5e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                         alt="Boutique Hotel Expansion" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Boutique Hotel Expansion</h3>
+                        <p class="text-gray-600 mb-4">Franchise model development and quality standards implementation</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm font-medium text-blue-600">Completed 2017</span>
+                            <a href="#" class="text-blue-600 hover:text-blue-800">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md font-medium transition duration-300 inline-block" data-page="contact">Start Your Project With Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Page -->
+    <section class="page" id="contact">
+        <div class="container mx-auto px-4 py-16">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Contact Us</h2>
+                <p class="max-w-2xl mx-auto text-gray-600">Get in touch with our team to discuss your travel, tourism or hospitality advisory needs.</p>
+            </div>
+            
+            <div class="flex flex-col md:flex-row gap-8">
+                <div class="md:w-1/2">
+                    <div class="bg-white p-8 rounded-lg shadow-md">
+                        <h3 class="text-xl font-semibold mb-6">Send Us a Message</h3>
+                        <form>
+                            <div class="mb-4">
+                                <label for="name" class="block text-gray-700 mb-2">Name</label>
+                                <input type="text" id="name" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600">
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="email" class="block text-gray-700 mb-2">Email</label>
+                                <input type="email" id="email" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600">
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="phone" class="block text-gray-700 mb-2">Phone</label>
+                                <input type="tel" id="phone" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600">
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="project" class="block text-gray-700 mb-2">Service Interest</label>
+                                <select id="project" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600">
+                                    <option value="">Select service</option>
+                                    <option value="destination">Destination Development</option>
+                                    <option value="hotel">Hotel Consulting</option>
+                                    <option value="tourism">Tourism Strategy</option>
+                                    <option value="marketing">Marketing Strategy</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="message" class="block text-gray-700 mb-2">Message</label>
+                                <textarea id="message" rows="4" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"></textarea>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md font-medium transition duration-300">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2">
+                    <div class="bg-white p-8 rounded-lg shadow-md h-full">
+                        <h3 class="text-xl font-semibold mb-6">Our Offices</h3>
+                        
+                        <div class="mb-8">
+                            <h4 class="font-bold text-lg mb-2">Headquarters</h4>
+                            <div class="flex items-start mb-4">
+                                <i class="fas fa-map-marker-alt text-blue-600 mt-1 mr-3"></i>
+                                <div>
+                                    <p>123 Tourism Way</p>
+                                    <p>Nassau, Bahamas</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center mb-2">
+                                <i class="fas fa-phone text-blue-600 mr-3"></i>
+                                <p>(242) 555-1234</p>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-envelope text-blue-600 mr-3"></i>
+                                <p>info@vwtourism.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-8">
+                            <h4 class="font-bold text-lg mb-2">Regional Office</h4>
+                            <div class="flex items-start mb-4">
+                                <i class="fas fa-map-marker-alt text-blue-600 mt-1 mr-3"></i>
+                                <div>
+                                    <p>456 Hospitality Drive</p>
+                                    <p>Miami, FL 33101</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center mb-2">
+                                <i class="fas fa-phone text-blue-600 mr-3"></i>
+                                <p>(305) 555-5678</p>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-envelope text-blue-600 mr-3"></i>
+                                <p>usa@vwtourism.com</p>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-bold text-lg mb-4">Office Hours</h4>
+                            <div class="flex mb-2">
+                                <div class="w-24 font-medium">Monday - Friday</div>
+                                <div>8:00 AM - 5:00 PM</div>
+                            </div>
+                            <div class="flex">
+                                <div class="w-24 font-medium">Saturday - Sunday</div>
+                                <div>Closed</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-lg mr-3">VW</div>
+                        <h3 class="text-lg font-bold">VANDERPOOL-WALLACE</h3>
+                    </div>
+                    <p class="text-gray-400">Travel, tourism & hospitality advisors since 2005.</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300" data-page="home">Home</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300" data-page="about">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300" data-page="case-studies">Case Studies</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300" data-page="contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Destination Development</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Hospitality Consulting</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Tourism Strategy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Market Research</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Connect With Us</h4>
+                    <div class="flex space-x-4 mb-4">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-white hover:bg-blue-600 transition duration-300">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-white hover:bg-blue-600 transition duration-300">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-white hover:bg-blue-600 transition duration-300">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-white hover:bg-blue-600 transition duration-300">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                    <p class="text-gray-400">Subscribe to our tourism insights</p>
+                    <div class="flex mt-2">
+                        <input type="email" placeholder="Your email" class="px-4 py-2 rounded-l-md bg-gray-800 text-white focus:outline-none w-full">
+                        <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-r-md transition duration-300">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 Vanderpool-Wallace Travel, Tourism & Hospitality Advisors. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Page navigation
+            const navLinks = document.querySelectorAll('.nav-link');
+            const pages = document.querySelectorAll('.page');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Hide mobile menu if open
+                    mobileMenu.classList.add('hidden');
+                    
+                    // Get target page
+                    const targetPage = this.getAttribute('data-page');
+                    
+                    // Update active nav link
+                    navLinks.forEach(navLink => {
+                        navLink.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                    
+                    // Show target page
+                    pages.forEach(page => {
+                        page.classList.remove('active');
+                    });
+                    document.getElementById(targetPage).classList.add('active');
+                    
+                    // Scroll to top
+                    window.scrollTo(0, 0);
+                });
+            });
+            
+            // Form submission
+            const contactForm = document.querySelector('form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Thank you for your message! We will get back to you soon.');
+                    this.reset();
+                });
+            }
+        });
+    </script>
+</body>
+</html>
