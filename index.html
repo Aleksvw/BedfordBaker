@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TropicalShots - Caribbean Stock Photos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom CSS for transitions */
+        .page {
+            display: none;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .page.active {
+            display: block;
+            opacity: 1;
+        }
+        .photo-card:hover .photo-info {
+            transform: translateY(0);
+        }
+        .photo-info {
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        .tags span {
+            transition: all 0.2s ease;
+        }
+        .tags span:hover {
+            background-color: #3182ce;
+            color: white;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Navigation -->
+    <nav class="bg-gradient-to-r from-teal-600 to-blue-600 text-white p-4 shadow-md sticky top-0 z-50">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+            <div class="flex items-center mb-4 md:mb-0">
+                <i class="fas fa-camera-retro text-2xl mr-2"></i>
+                <h1 class="text-2xl font-bold">TropicalShots</h1>
+            </div>
+            <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4 w-full md:w-auto">
+                <button onclick="showPage('home')" class="nav-btn active px-4 py-2 rounded-md bg-white bg-opacity-10 hover:bg-opacity-20 transition">Home</button>
+                <button onclick="showPage('explore')" class="nav-btn px-4 py-2 rounded-md hover:bg-white hover:bg-opacity-10 transition">Explore</button>
+                <button onclick="showPage('about')" class="nav-btn px-4 py-2 rounded-md hover:bg-white hover:bg-opacity-10 transition">About</button>
+                <button onclick="showPage('contact')" class="nav-btn px-4 py-2 rounded-md hover:bg-white hover:bg-opacity-10 transition">Contact</button>
+            </div>
+            <div class="mt-4 md:mt-0 flex items-center w-full md:w-auto">
+                <div class="relative w-full">
+                    <input type="text" id="searchInput" placeholder="Search tropical beaches, rum, carnivals..." class="w-full px-4 py-2 rounded-md text-gray-800 focus:outline-none">
+                    <button onclick="searchPhotos()" class="absolute right-2 top-1/2 transform -translate-y-1/2 text-blue-600">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Page -->
+    <div id="home" class="page container mx-auto p-4 active">
+        <div class="relative h-96 rounded-xl overflow-hidden mb-8">
+            <img src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Caribbean beach" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                <div class="text-center text-white p-4">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-4">Authentic Caribbean Imagery</h2>
+                    <p class="text-xl mb-6">High-quality stock photos celebrating the diversity and beauty of the Caribbean</p>
+                    <button onclick="showPage('explore')" class="bg-white text-blue-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition">Browse Gallery</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Caribbean market" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="font-bold text-xl mb-2">Local Culture</h3>
+                    <p class="text-gray-600">Authentic images of Caribbean traditions, festivals, and daily life.</p>
+                </div>
+            </div>
+            <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1505245208761-ba872912fac0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Caribbean nature" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="font-bold text-xl mb-2">Breathtaking Landscapes</h3>
+                    <p class="text-gray-600">From turquoise waters to lush rainforests - the Caribbean's natural beauty.</p>
+                </div>
+            </div>
+            <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1515238152791-8216bfdf89a7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D3D&auto=format&fit=crop&w=800&q=80" alt="Caribbean food" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="font-bold text-xl mb-2">Culinary Delights</h3>
+                    <p class="text-gray-600">Vibrant images of Caribbean cuisine that showcase the region's flavors.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-gradient-to-r from-amber-500 to-orange-500 rounded-xl p-8 text-white mb-8">
+            <h2 class="text-3xl font-bold mb-4">Why Choose TropicalShots?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <h3 class="text-xl font-semibold mb-2 flex items-center"><i class="fas fa-map-marker-alt mr-2"></i> Region-Focused</h3>
+                    <p>We specialize exclusively in Caribbean content, with images captured by local photographers who understand the nuances of the region.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-2 flex items-center"><i class="fas fa-tags mr-2"></i> Accurate Tagging</h3>
+                    <p>Our photos are meticulously tagged with relevant Caribbean terms, making it easy to find exactly what you need for your project.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-2 flex items-center"><i class="fas fa-money-bill-wave mr-2"></i> Affordable Pricing</h3>
+                    <p>Competitive pricing with special rates for Caribbean-based businesses and creators.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-2 flex items-center"><i class="fas fa-users mr-2"></i> Support Local Talent</h3>
+                    <p>A significant portion of proceeds go directly to Caribbean photographers and content creators.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Explore Page -->
+    <div id="explore" class="page container mx-auto p-4">
+        <h2 class="text-3xl font-bold mb-6">Explore Caribbean Stock Photos</h2>
+        
+        <div class="mb-8">
+            <h3 class="text-xl font-semibold mb-4">Popular Caribbean Tags</h3>
+            <div class="tags flex flex-wrap gap-2 mb-6">
+                <span onclick="filterByTag('beach')" class="cursor-pointer bg-gray-200 px-3 py-1 rounded-full text-sm">beach</span>
+                <span onclick="filterByTag('tropical')" class="cursor-pointer bg-gray-200 px-3 py-1 rounded-full text-sm">tropical</span>
+                <span onclick="filterByTag('jamaica')" class="cursor-pointer bg-gray-200 px-3 py-1 rounded-full text-sm">Jamaica</span>
+                <span onclick="filterByTag('trinidad')" class="cursor-pointer bg-gray-200 px-3 py-1 rounded-full text-sm">Trinidad</span>
+                <span onclick="filterByTag('carnival')" class="cursor-pointer bg-gray-200 px-3 py-1 rounded-full text-sm">carnival</span>
+                <span onclick="filterByTag('rum')" class="cursor-pointer bg-gray-200 px-3 py-1 rounded-full text-sm">rum</span>
+                <span onclick="filterByTag('island')" class="cursor-pointer bg-gray-200 px-3 py-1 rounded-full text-sm">island</span>
+                <span onclick="filterByTag('sunset')" class="cursor-pointer bg-gray-200 px-3 py-1 rounded-full text-sm">sunset</span>
+                <span onclick="filterByTag('food')" class="cursor-pointer bg-gray-200 px-3 py-1 rounded-full text-sm">food</span>
+                <span onclick="filterByTag('culture')" class="cursor-pointer bg-gray-200 px-3 py-1 rounded-full text-sm">culture</span>
+            </div>
+        </div>
+
+        <div id="photoGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            <!-- Photos will be loaded here -->
+        </div>
+
+        <div class="flex justify-center">
+            <button onclick="loadMorePhotos()" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition flex items-center">
+                <i class="fas fa-plus mr-2"></i> Load More
+            </button>
+        </div>
+    </div>
+
+    <!-- About Page -->
+    <div id="about" class="page container mx-auto p-4">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold mb-6">About TropicalShots</h2>
+            
+            <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+                <h3 class="text-2xl font-semibold mb-4 text-blue-600">Our Caribbean Story</h3>
+                <p class="mb-4">Founded in 2023 by a team of Caribbean photographers and digital creators, TropicalShots was born from a shared frustration: the lack of authentic, region-specific stock imagery that truly represents the diversity and vibrancy of Caribbean life.</p>
+                <p class="mb-4">Too often, we saw Caribbean countries represented by generic "tropical" images that failed to capture the unique character of individual islands and their cultures. We set out to change that.</p>
+                <img src="https://images.unsplash.com/photo-1559128292-44c62f968a5f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Caribbean marketplace" class="w-full h-64 object-cover rounded-lg mb-4">
+                <p>Today, TropicalShots connects businesses, marketers, and creators with high-quality, authentic Caribbean imagery while supporting local photographers across the region.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <h3 class="text-2xl font-semibold mb-4 text-teal-600">Our Mission</h3>
+                    <p class="mb-4">To provide the most comprehensive collection of authentic Caribbean stock photography while:</p>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li>Accurately representing the diversity of Caribbean cultures</li>
+                        <li>Supporting local content creators</li>
+                        <li>Making professional Caribbean imagery accessible to all</li>
+                        <li>Preserving regional heritage through visual documentation</li>
+                    </ul>
+                </div>
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <h3 class="text-2xl font-semibold mb-4 text-orange-600">Why It Matters</h3>
+                    <p class="mb-4">Authentic representation matters. Whether you're a:</p>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li>Tourism board promoting your destination</li>
+                        <li>Local business creating marketing materials</li>
+                        <li>Diaspora member connecting with home</li>
+                        <li>Global brand wanting to respectfully feature Caribbean culture</li>
+                    </ul>
+                    <p class="mt-4">Having access to culturally accurate imagery makes all the difference in how your message is received.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Page -->
+    <div id="contact" class="page container mx-auto p-4">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold mb-6">Contact Us</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <h3 class="text-2xl font-semibold mb-4 text-blue-600">Get in Touch</h3>
+                    <form id="contactForm" class="space-y-4">
+                        <div>
+                            <label for="name" class="block text-gray-700 mb-1">Name</label>
+                            <input type="text" id="name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-gray-700 mb-1">Email</label>
+                            <input type="email" id="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label for="subject" class="block text-gray-700 mb-1">Subject</label>
+                            <select id="subject" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <option value="general">General Inquiry</option>
+                                <option value="contributor">Become a Contributor</option>
+                                <option value="license">Licensing Questions</option>
+                                <option value="partnership">Partnership Opportunities</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-gray-700 mb-1">Message</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                        </div>
+                        <button type="button" onclick="submitForm()" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">Send Message</button>
+                    </form>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <h3 class="text-2xl font-semibold mb-4 text-teal-600">Our Offices</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-2xl text-orange-500 mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-semibold">Regional Headquarters</h4>
+                                <p class="text-gray-600">123 Beach Road, Kingston, Jamaica</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-phone-alt text-2xl text-green-500 mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-semibold">Phone</h4>
+                                <p class="text-gray-600">+1 (876) 555-0123</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-envelope text-2xl text-blue-500 mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-semibold">Email</h4>
+                                <p class="text-gray-600">hello@tropicalshots.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-clock text-2xl text-purple-500 mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-semibold">Hours</h4>
+                                <p class="text-gray-600">Monday - Friday: 9am - 5pm EST</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 class="text-xl font-semibold mt-8 mb-4">Follow Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-blue-500 hover:text-blue-700 text-2xl"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-pink-500 hover:text-pink-700 text-2xl"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-blue-400 hover:text-blue-600 text-2xl"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-red-500 hover:text-red-700 text-2xl"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-6">
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">TropicalShots</h3>
+                    <p>Your premier source for authentic Caribbean stock photography. Supporting local photographers across the region.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><button onclick="showPage('home')" class="hover:text-teal-300 transition">Home</button></li>
+                        <li><button onclick="showPage('explore')" class="hover:text-teal-300 transition">Gallery</button></li>
+                        <li><button onclick="showPage('about')" class="hover:text-teal-300 transition">About Us</button></li>
+                        <li><button onclick="showPage('contact')" class="hover:text-teal-300 transition">Contact</button></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Legal</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-teal-300 transition">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-teal-300 transition">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-teal-300 transition">Licensing Agreements</a></li>
+                        <li><a href="#" class="hover:text-teal-300 transition">Cookie Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Newsletter</h3>
+                    <p class="mb-2">Subscribe for Caribbean photography tips and updates</p>
+                    <div class="flex">
+                        <input type="email" placeholder="Your email" class="px-4 py-2 text-gray-800 rounded-l-lg w-full focus:outline-none">
+                        <button class="bg-teal-500 px-4 py-2 rounded-r-lg hover:bg-teal-600 transition">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-6 text-center text-gray-400">
+                <p>&copy; 2023 TropicalShots. All rights reserved. Proudly Caribbean.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Sample photo data
+        const caribbeanPhotos = [
+            { id: 1, url: "https://images.unsplash.com/photo-1506929562872-bb421503ef21?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", title: "White Sand Beach", tags: ["beach", "tropical", "jamaica"], likes: 124 },
+            { id: 2, url: "https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", title: "Local Market Scene", tags: ["market", "culture", "trinidad"], likes: 89 },
+            { id: 3, url: "https://images.unsplash.com/photo-1505245208761-ba872912fac0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", title: "Palm Tree Sunset", tags: ["sunset", "palm", "tropical"], likes: 215 },
+            { id: 4, url: "https://images.unsplash.com/photo-1515238152791-8216bfdf89a7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", title: "Caribbean Seafood", tags: ["food", "seafood", "barbados"], likes: 76 },
+            { id: 5, url: "https://images.unsplash.com/photo-1533106497176-45ae19e68ba2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", title: "Carnival Dancer", tags: ["carnival", "culture", "trinidad"], likes: 198 },
+            { id: 6, url: "https://images.unsplash.com/photo-1503174971373-b1f69850bded?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", title: "Hammock by the Sea", tags: ["beach", "relax", "tropical"], likes: 167 }
+        ];
+
+        // Initialize the photo grid
+        let currentPage = 'home';
+        let visiblePhotos = 6;
+        
+        // Load initial photos when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            loadPhotos();
+        });
+
+        // Function to show page
+        function showPage(pageId) {
+            // Hide current page
+            document.getElementById(currentPage).classList.remove('active');
+            
+            // Remove active class from all nav buttons
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show new page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Add active class to clicked nav button
+            event.target.classList.add('active');
+            
+            // Update current page
+            currentPage = pageId;
+            
+            // If exploring page, make sure photos are loaded
+            if (pageId === 'explore') {
+                loadPhotos();
+            }
+        }
+
+        // Function to load photos
+        function loadPhotos() {
+            const photoGrid = document.getElementById('photoGrid');
+            photoGrid.innerHTML = ''; // Clear previous photos
+            
+            const photosToShow = caribbeanPhotos.slice(0, visiblePhotos);
+            
+            photosToShow.forEach(photo => {
+                const photoCard = document.createElement('div');
+                photoCard.className = 'photo-card bg-white rounded-xl shadow-md overflow-hidden relative';
+                photoCard.innerHTML = `
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="${photo.url}" alt="${photo.title}" class="w-full h-full object-cover">
+                        <div class="photo-info absolute bottom-0 left-0 right-0 bg-black bg-opacity-70 text-white p-4">
+                            <h3 class="font-bold text-lg">${photo.title}</h3>
+                            <div class="flex justify-between items-center mt-2">
+                                <div class="flex items-center">
+                                    <i class="fas fa-heart mr-1 text-red-400"></i>
+                                    <span>${photo.likes}</span>
+                                </div>
+                                <div>
+                                    <button class="bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700 transition">Download</button>
+                                </div>
+                            </div>
+                            <div class="tags mt-2 flex flex-wrap gap-1">
+                                ${photo.tags.map(tag => `<span class="bg-gray-200 text-gray-800 px-2 py-1 rounded-full text-xs">${tag}</span>`).join('')}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                photoGrid.appendChild(photoCard);
+            });
+        }
+
+        // Function to load more photos
+        function loadMorePhotos() {
+            visiblePhotos += 3;
+            if (visiblePhotos > caribbeanPhotos.length) {
+                visiblePhotos = caribbeanPhotos.length;
+                event.target.disabled = true;
+                event.target.innerHTML = '<i class="fas fa-check mr-2"></i> All photos loaded';
+            }
+            loadPhotos();
+        }
+
+        // Function to filter by tag
+        function filterByTag(tag) {
+            // In a real implementation, this would filter the photos array
+            alert(`In a full implementation, we would now filter to show only photos tagged with: ${tag}`);
+        }
+
+        // Function to search photos
+        function searchPhotos() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            if (searchTerm.trim() === '') return;
+            
+            // In a real implementation, this would search photo titles and tags
+            alert(`In a full implementation, we would now search for: ${searchTerm}`);
+        }
+
+        // Function to submit contact form
+        function submitForm() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            if (!name || !email || !message) {
+                alert('Please fill in all required fields');
+                return;
+            }
+            
+            // In a real implementation, this would send the form data to a server
+            alert(`Thank you ${name}! Your message about "${subject}" has been received. We'll respond to ${email} soon.`);
+            document.getElementById('contactForm').reset();
+        }
+    </script>
+</body>
+</html>
